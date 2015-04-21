@@ -42,6 +42,8 @@ class SubmitHandler(BaseHandler):
                 print combo
                 combo = str(combo)
                 beanstalk.put(combo)
+            else:
+                print 'we have already seen this groupID and url recently, not queueing it', url
             # maybe have a beanstalk queue for every groupID???
             # is that Smart?
             self.response = ResponseObject('200', 'Success')
