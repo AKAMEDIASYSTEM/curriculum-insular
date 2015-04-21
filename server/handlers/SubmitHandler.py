@@ -38,10 +38,10 @@ class SubmitHandler(BaseHandler):
                     {'$push': {'timestamp': timestamp}, '$set': {'latest': timestamp}},
                     upsert=True
                     )
-            combo = '|'.join((groupID, str(url)))
-            print combo
-            combo = str(combo)
-            beanstalk.put(combo)
+                combo = '|'.join((groupID, str(url)))
+                print combo
+                combo = str(combo)
+                beanstalk.put(combo)
             # maybe have a beanstalk queue for every groupID???
             # is that Smart?
             self.response = ResponseObject('200', 'Success')
