@@ -1,6 +1,15 @@
 self-contained curriculum (test)
 ===============
 
+__NOTE, this is deprecated! Get more, better Curriculum from https://github.com/AKAMEDIASYSTEM/curriculum-docker__
+
+
+
+
+
+
+
+
 ec2-based curriculum server test
 
 `sudo apt-get install git beanstalkd mongod build-essential python-dev python-pip -y`
