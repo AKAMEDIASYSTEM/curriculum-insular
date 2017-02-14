@@ -8,22 +8,12 @@ ec2-based curriculum server test
 
 Stack:
 
-__Nginx (not yet implemented)__ - listens to the world on port 80, load balances (but not much for us, since we only have one tornado instance running)
-/etc/nginx/nginx.conf - this holds the mapping from "listen on" to "send traffic to X servers"
-
-__Upstart (not yet implemented)__ - systemd-like "make sure main apps are running and if not, restart them". Need to document more config stuff for this.
-
-__Supervisord__ - copy the two .conf files to /etc/supervisor/init.d/ and then run supervisor to start:
->`sudo cp /curriculum-insular/curriculum_insular_* /etc/supervisor/init.d/`
->OR `sudo cp /curriculum-insular/curriculum_insular_* /etc/supervisor/conf.d/` if init.d is absent
->`sudo supervisorctl start curriculum_worker`
->`sudo supervisorctl start curriculum_server`
->to check status at any time, run `sudo supervisorctl` OR just check the logs in /var/log/supervisor/
+__Systemd__ - a lovely state manager that will keep everything running and started up in order
 
 __MongoDB__ - like its forebear, the new curriculum implementation uses Mongo for storing chunks of language. The DB is called curriculum
 * __db.keywords__ - language fragments, probably simple K:V or List. TTL should be 7 days or so
 * __db.pages__ - list of URLS we have processed quite recently - TTL here should be ~1 hour. We check against this before re-fetching the page to do any NLP+chunking
-* __db.users__ - authentication DB, very static; poplated at boot. It's a DB and not a flatfile so in the future we can perhaps dynamically add groupIDs and tokens but I'm in no rush
+* __db.users__ - authentication DB, very static; populated at boot. It's a DB and not a flatfile so in the future we can perhaps dynamically add groupIDs and tokens but I'm in no rush
 
 __Beanstalk__ - handles the queue of URLS-to-analyze from SubmitHandler. `beanstalk.sh` or the command therein must be run before before __startDB.py__ and __server/server.py__
 

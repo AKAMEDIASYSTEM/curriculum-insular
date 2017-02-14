@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# AKA tuned-resonator curriculum-insular resolver/worker
+# AKA curriculum-insular resolver/worker
 
 import beanstalkc
 from pattern.web import URL, plaintext, URLError, MIMETYPE_WEBPAGE, MIMETYPE_PLAINTEXT, HTTPError

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# tuned-resonator
+# curriculum-insular
 # experiments with google physical-web mdns broadcast
 
 import tornado.ioloop
